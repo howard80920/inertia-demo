@@ -1,0 +1,14 @@
+@import 'tailwindcss/base';
+@import 'base';
+
+@import 'tailwindcss/components';
+@import 'components';
+
+@import 'tailwindcss/utilities';
+
+@import 'purge-icons-vue';
+
+@import 'form';
+@import 'button';
+@import 'mavonEditor';
+@import 'pagination';

@@ -1,0 +1,72 @@
+.v-note-wrapper {
+  @apply min-w-0 border border-gray-300;
+  .v-note-op {
+    @apply border-gray-300 flex-col;
+    @screen md {
+      @apply flex-row;
+    }
+  }
+  .v-right-item {
+    @apply flex-1 max-w-none;
+    @screen md {
+      max-width: 30%;
+    }
+  }
+  .op-btn {
+    @apply rounded-md transition-colors duration-150;
+    &.sure {
+      @apply bg-purple-500 text-white;
+      &:hover {
+        @apply bg-purple-700;
+      }
+    }
+  }
+  .auto-textarea-wrapper .auto-textarea-input {
+    @apply font-mono;
+  }
+  pre.auto-textarea-block {
+    @apply break-words;
+  }
+  .v-show-content {
+    @apply bg-white;
+  }
+  &.v-note-short {
+    min-height: 220px;
+  }
+  &.disabled {
+    &.v-note-short {
+      min-height: 100px;
+    }
+    .v-note-edit {
+      @apply cursor-default;
+    }
+  }
+}
+
+.markdown-body {
+  @apply font-sans font-light break-words;
+  a {
+    @apply text-purple-500 transition-colors duration-100;
+    &:hover {
+      @apply text-purple-700;
+    }
+  }
+  p {
+    @apply text-base leading-7;
+  }
+  strong {
+    @apply font-bold;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  pre {
+    @apply text-base;
+  }
+  .hljs {
+    background-color: #1d1f21;
+  }
+}

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,5 +38,26 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, \Throwable $e)
+    {
+        $response = parent::render($request, $e);
+
+        if (
+            !app()->environment('local') &&
+            boolval($request->header('X-Inertia', false))
+        ) {
+            $status = $response->getStatusCode();
+            return inertia('Error', [
+                'status'      => $status,
+                'status_text' => Response::$statusTexts[$status] ?? 'Unknown Status Code',
+                'message'     => app()->environment('production') ? '' : $e->getMessage(),
+            ])
+            ->toResponse($request)
+            ->setStatusCode($status);
+        }
+
+        return $response;
     }
 }
