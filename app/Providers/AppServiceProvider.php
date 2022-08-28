@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Inertia\Inertia;
+// use Inertia\Inertia;
 use App\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,8 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerInertia();
+
         $this->registerLengthAwarePaginator();
+
     }
 
     /**
@@ -28,16 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-    }
-
-    protected function registerInertia()
-    {
-        Inertia::version(function () {
-            return md5_file(public_path('mix-manifest.json'));
-        });
-        // Inertia::share([
-        //     'title' => config('app.name'),
-        // ]);
     }
 
     protected function registerLengthAwarePaginator()
